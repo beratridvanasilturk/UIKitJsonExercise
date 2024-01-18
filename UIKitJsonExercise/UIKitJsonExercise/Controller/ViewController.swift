@@ -19,7 +19,10 @@ class ViewController: UITableViewController {
         let movieManager = MovieManager()
         
         movieManager.fetchMovies { (movies) in
-            print(movies.title)
+            DispatchQueue.main.async {
+                self.navigationItem.title = movies.title
+            }
+          
             print(movies.description)
             print(movies.movies)
         }
