@@ -11,6 +11,12 @@ class ViewController: UITableViewController {
     //MARK: - Properties
     let reuseIdentifier = "MovieCell"
     
+    var moviesArray: [Movies]? {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -22,9 +28,8 @@ class ViewController: UITableViewController {
             DispatchQueue.main.async {
                 self.navigationItem.title = movies.title
             }
-          
-            print(movies.description)
-            print(movies.movies)
+           
+            self.moviesArray = movies.movies
         }
     }
     
@@ -38,11 +43,13 @@ class ViewController: UITableViewController {
 extension ViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return moviesArray?.count ?? 0
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier) ?? nil
         
+        let movie = moviesArray?[indexPath.row]
+        cell?.textLabel?.text = movie?.title
         return cell!
     }
 }
