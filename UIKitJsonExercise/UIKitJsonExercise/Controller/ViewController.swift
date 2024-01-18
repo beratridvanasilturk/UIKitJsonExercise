@@ -17,7 +17,12 @@ class ViewController: UITableViewController {
         configureTableView()
         
         let movieManager = MovieManager()
-        movieManager.fetchMovies()
+        
+        movieManager.fetchMovies { (movies) in
+            print(movies.title)
+            print(movies.description)
+            print(movies.movies)
+        }
     }
     
     func configureTableView() {
