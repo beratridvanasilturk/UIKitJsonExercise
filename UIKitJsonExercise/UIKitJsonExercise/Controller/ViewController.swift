@@ -10,13 +10,16 @@ import UIKit
 class ViewController: UITableViewController {
     //MARK: - Properties
     let reuseIdentifier = "MovieCell"
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureTableView()
+        
+        let movieManager = MovieManager()
+        movieManager.fetchMovies()
     }
-
+    
     func configureTableView() {
         tableView.backgroundColor = .brown
         tableView.tableFooterView = UIView()

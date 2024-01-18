@@ -10,7 +10,27 @@ import Foundation
 struct MovieManager {
     
     func fetchMovies() {
-        let url = URL(string: "https://reactnative.dev/movies.json")
+        guard let url = URL(string: "https://reactnative.dev/movies.json")
+            else { return }
+        
+        let dataTask = URLSession.shared.dataTask(with: url) { (data, _, err) in
+            
+            if let err = err {
+                print("Bad Url" + err.localizedDescription)
+            }
+            guard let jsonData = data else { return }
+            
+            let decoder = JSONDecoder()
+            
+            do {
+                let decodedData = try decoder.decode(MovieModel.self, from: jsonData)
+                print(decodedData)
+            } catch {
+                print("err decoding data")
+            }
+        }
+        // fetch starting
+        dataTask.resume()
         
     }
 }
