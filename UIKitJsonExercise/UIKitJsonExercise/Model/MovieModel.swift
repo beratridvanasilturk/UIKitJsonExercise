@@ -10,9 +10,14 @@ import Foundation
 struct MovieModel: Codable {
     let title: String
     let description: String
-
+    let movies: [Movies]
 }
 
+struct Movies: Codable {
+    let id: String
+    let title: String
+    let releaseYear: String
+}
 //{
 //  "title": "The Basics - Networking",
 //  "description": "Your app fetched this from a remote endpoint!",
