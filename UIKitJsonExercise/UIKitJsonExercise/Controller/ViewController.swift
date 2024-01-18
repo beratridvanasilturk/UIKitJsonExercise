@@ -13,7 +13,9 @@ class ViewController: UITableViewController {
     
     var moviesArray: [Movies]? {
         didSet {
-            tableView.reloadData()
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }
     }
     
@@ -48,8 +50,9 @@ extension ViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier) ?? nil
         
-        let movie = moviesArray?[indexPath.row]
-        cell?.textLabel?.text = movie?.title
+        guard let movie = moviesArray?[indexPath.row] else {return UITableViewCell() }
+        
+        cell?.textLabel?.text = movie.title + " - " + movie.releaseYear
         return cell!
     }
 }
