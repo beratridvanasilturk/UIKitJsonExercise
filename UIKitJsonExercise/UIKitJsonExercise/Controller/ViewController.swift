@@ -30,13 +30,13 @@ class ViewController: UITableViewController {
             DispatchQueue.main.async {
                 self.navigationItem.title = movies.title
             }
-           
+            
             self.moviesArray = movies.movies
         }
     }
     
     func configureTableView() {
-        tableView.backgroundColor = .brown
+        tableView.backgroundColor = .lightGray
         tableView.tableFooterView = UIView()
     }
 }

@@ -18,6 +18,8 @@ struct Movies: Codable {
     let title: String
     let releaseYear: String
 }
+
+// Backend Datas:
 //{
 //  "title": "The Basics - Networking",
 //  "description": "Your app fetched this from a remote endpoint!",

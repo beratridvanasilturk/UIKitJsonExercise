@@ -11,7 +11,7 @@ struct MovieManager {
     
     func fetchMovies(completion: @escaping(MovieModel) -> Void ) {
         guard let url = URL(string: "https://reactnative.dev/movies.json")
-            else { return }
+        else { return }
         
         let dataTask = URLSession.shared.dataTask(with: url) { (data, _, err) in
             
